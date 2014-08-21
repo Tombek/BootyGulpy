@@ -16,7 +16,7 @@ Because, as far as I know, you don't need to compile Bootstrap each time you ref
 
 #### Install all the gulp's modules
 
-`$ npm i -D gulp gulp-plumber gulp-watch gulp-less gulp-concat-css gulp-minify-css`
+`$ npm install`
 
 #### Watch modifications from bootstrap.less
 
