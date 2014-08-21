@@ -1,46 +1,44 @@
-var gulp = require('gulp'),
-    plumber = require('gulp-plumber'),
-    watch = require('gulp-watch'),
-    less = require('gulp-less'),
-    concat = require("gulp-concat-css"),
-    minifyCss = require("gulp-minify-css");
+var gulp      = require('gulp');
+var plumber   = require('gulp-plumber');
+var less      = require('gulp-less');
+var rename    = require('gulp-rename');
+var concat    = require('gulp-concat');
+var cssshrink = require('gulp-cssshrink');
 
 // Bootstrap : Compile Bootstrap only
 
 gulp.task('compile-bootstrap', function() {
-    gulp.src('assets/less/bootstrap/less/bootstrap.less') 
+    return gulp.src('assets/less/bootstrap/less/bootstrap.less') 
+        .pipe(plumber())
         .pipe(less())
-        .pipe(concat('bootstrap.prod.min.css')) 
-        .pipe(minifyCss())
+        .pipe(rename({ suffix: '.prod.min' }))
+        .pipe(cssshrink())
         .pipe(gulp.dest('dist'));
-});
-
-// Bootstrap : watch
-
-gulp.task('watch-bootstrap-css', function() {
-    watch({
-        glob: 'assets/less/bootstrap/less/*.less'
-    }, function(files) {
-        gulp.start('compile-bootstrap');
-    });
 });
 
 // theme : compile, concat & minify
 
 gulp.task('compile-concat-minify', function() {
-    gulp.src('assets/less/theme/*.less') 
+    return gulp.src(less_path + 'theme/*.less') 
+        .pipe(plumber())
         .pipe(less())
         .pipe(concat('prod.min.css')) 
-        .pipe(minifyCss())
+        .pipe(cssshrink())
         .pipe(gulp.dest('dist'));
+});
+
+// Bootstrap : watch
+
+gulp.task('watch-bootstrap-css', ['compile-bootstrap'], function(){
+    gulp.watch('assets/less/bootstrap/less/*.less', ['compile-bootstrap']);
 });
 
 // theme : watch
 
-gulp.task('watch-theme-css', function() {
-    watch({
-        glob: 'assets/less/theme/*.less'
-    }, function(files) {
-        gulp.start('compile-concat-minify');
-    });
+gulp.task('watch-theme-css', ['compile-concat-minify'], function(){
+    gulp.watch('assets/less/theme/*.less', ['compile-concat-minify']);
 });
+
+// Default task
+
+gulp.task('default', ['compile-concat-minify', 'compile-bootstrap']);
