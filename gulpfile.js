@@ -25,21 +25,21 @@ gulp.task('watch-bootstrap-css', function() {
     });
 });
 
-// Core : compile, concat & minify
+// theme : compile, concat & minify
 
 gulp.task('compile-concat-minify', function() {
-    gulp.src('assets/less/core/*.less') 
+    gulp.src('assets/less/theme/*.less') 
         .pipe(less())
         .pipe(concat('prod.min.css')) 
         .pipe(minifyCss())
         .pipe(gulp.dest('dist'));
 });
 
-// Core : watch
+// theme : watch
 
-gulp.task('watch-core-css', function() {
+gulp.task('watch-theme-css', function() {
     watch({
-        glob: 'assets/less/core/*.less'
+        glob: 'assets/less/theme/*.less'
     }, function(files) {
         gulp.start('compile-concat-minify');
     });
