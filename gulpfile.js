@@ -15,6 +15,16 @@ gulp.task('compile-bootstrap', function() {
         .pipe(gulp.dest('dist'));
 });
 
+// Bootstrap : watch
+
+gulp.task('watch-bootstrap-css', function() {
+    watch({
+        glob: 'assets/less/bootstrap/less/*.less'
+    }, function(files) {
+        gulp.start('compile-bootstrap');
+    });
+});
+
 // Core : compile, concat & minify
 
 gulp.task('compile-concat-minify', function() {
