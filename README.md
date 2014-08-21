@@ -29,4 +29,4 @@ Because, as far as I know, you don't need to compile Bootstrap each time you ref
 ## (many)Thanks to:
 
 - Putaindecode - Introduction à Gulp (http://putaindecode.fr/posts/js/introduction-gulp/)
-- Julien Renaux - Introduction to Gulp.js with practical examples (http://julienrenaux.fr/2014/05/25/introduction-to-gulp-js-with-practical-examples/)1
+- Julien Renaux - Introduction to Gulp.js with practical examples (http://julienrenaux.fr/2014/05/25/introduction-to-gulp-js-with-practical-examples/)
